@@ -7,13 +7,13 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 module.exports = {
   mode: isDevelopment ? 'development' : 'production', //informa qual é o modo de rodar o projeto
   devtool: isDevelopment ? 'eval-source-map' : 'source-map', //utilizando para deixar o código legivel no devtools para debugar
-  entry: path.resolve(__dirname, 'src', 'index.jsx'), //caminho da arquivo que seré transformado em bundle
+  entry: path.resolve(__dirname, 'src', 'index.tsx'), //caminho da arquivo que seré transformado em bundle
   output: {
     path: path.resolve(__dirname, 'dist'), // pasta que sera colocado o bundle
     filename: 'bundle.js' // nome do arquivo que sera o bundle
   },
   resolve: {
-    extensions: ['.js', '.jsx'] // regra para resolver as importações dentro do arquivo
+    extensions: ['.js', '.jsx', '.ts', '.tsx'] // regra para resolver as importações dentro do arquivo
   },
   devServer: {
     static: path.resolve(__dirname, 'public'), // serve o arquivo estatico de forma automatica sem precisar ficar rodando o webpack
@@ -29,7 +29,7 @@ module.exports = {
     // configurar os arquivos que seram lidos pelo babel loader, css-loader, style-loader, em exclude não se ler
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(j|t)sx$/,
         exclude: /node_modules/,
         use: {
           loader: require.resolve('babel-loader'),

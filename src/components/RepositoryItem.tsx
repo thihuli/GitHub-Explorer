@@ -1,5 +1,5 @@
-export function RepositoryItem({ repository }) {
-  // console.log(repository)
+import { RepositoryItemProps } from '../types'
+export function RepositoryItem({ repository }: RepositoryItemProps) {
   return (
     <li>
       <strong>{repository?.name ?? 'Default'}</strong>

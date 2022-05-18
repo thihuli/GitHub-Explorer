@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { RepositoryItem } from "./RepositoryItem";
+import { Repository } from '../types'
 
 import '../styles/repositories.scss'
 
 const url = 'https://api.github.com/orgs/rocketseat/repos';
 
 export function RepositoryList() {
-  const [repositories, setRepositories] = useState([]);
+  const [repositories, setRepositories] = useState<Repository[]>([]); // <> representa generics no typescript
 
   useEffect(() => {
     fetch(url)
@@ -20,9 +21,7 @@ export function RepositoryList() {
 
       <ul>
       {repositories.map((item) => (
-        <span key={item.id}>
-          <RepositoryItem repository={item} />
-        </span>
+          <RepositoryItem key={item.id} repository={item} />
       ))}
       </ul>
     </section>
